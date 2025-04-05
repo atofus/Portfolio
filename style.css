@@ -1,5 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans'); /* font init*/
 
-.opensans {
-    font-family: "Open Sans", sans-serif;
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+a:link,
+a:visited {
+  color: inherit; /* or pick a color you want like #000 for black */
+  text-decoration: none; /* optional if you want no underline */
+}
+
+.link-icons a i {
+  font-size: 1.5em; /* example size */
+  color: #333; /* or whatever color you want for the icons */
 }
