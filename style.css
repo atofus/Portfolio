@@ -10,6 +10,8 @@ body {
   overflow-x: hidden;
 }
 
+
+
 /* Star background effect */
 body::before {
   /* content: '';
@@ -33,6 +35,12 @@ body::before {
   height: 100%;
   z-index: -1;
 }
+
+#animation {
+  margin-top: -73px; 
+  box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596);
+}
+
 
 /* Main container for content!*/
 .container {
@@ -131,6 +139,7 @@ header {
   margin-top: 3rem;
   border: 3px solid rgba(255, 255, 255, 0.37);
 }
+
 
 /* Profile image and button (on the same level area div) */
 .image-button-container {
@@ -330,6 +339,8 @@ a:visited {
   height: 70px;
   margin-bottom: 1rem;
   object-fit: contain;
+  filter:  grayscale(100%) invert(100%);
+
 }
 
 .language-name {

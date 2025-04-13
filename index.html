@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title> Alan's Website </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.10.1/devicon.min.css">
+
+    <script type="text/javascript" src="./engine.js"></script>
+    <script type="text/javascript" src="./util.js"></script>
+    <script type="text/javascript" src="./animator.js"></script> 
+    <script type="text/javascript" src="./stickfigure.js"></script> 
+    <script type="text/javascript" src="./index.js"></script>
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -18,16 +24,16 @@
                 <a href="#" class="logo">ALAN TO</a>
                 <div class="nav_menu_options">
                         <!-- in the home, also maybe have a sliing thign that shows at the languages i can do -->
-                    <a href="#">Home</a>
-                    <a href="#">Education</a>
-                    <a href="#">Projects</a>
-                    <a href="#">Contact Me</a>
+                    <a href="#">home</a>
+                    <a href="#">education</a>
+                    <a href="#">projects</a>
+                    <a href="#">contact</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <main id = 'root' class="container">
+    <main class="container">
         <section class="profile">
             <div class="image-button-container">
                 <img src="" alt="Alan To" class="profile-image"> 
@@ -61,6 +67,7 @@
                 <a href="https://github.com/atofus" target="_blank"> <i class="fa fa-github-square"></i> </a>
                 <a href="https://x.com/elonmusk" target="_blank"> <i class="fa fa-twitter-square"></i> </a>
            </div>
+           <canvas id = "animation" width = 1100px height = 73px> </canvas>
         </section>
         <hr> 
         <section class="skills-section">
@@ -234,13 +241,19 @@
 </script>
 
 <script>
+    let mouse = { x: 0.5, y: 0.5 }; // normalized values
+
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX / window.innerWidth;
+        mouse.y = e.clientY / window.innerHeight;
+    });
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
   
     let width, height;
     const stars = [];
-    const numStars = 666;
-    let mouse = { x: null, y: null };
+    const numStars = 128;
+    // let mouse = { x: null, y: null };
   
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -250,7 +263,7 @@
     window.addEventListener('resize', resize);
     resize();
   
-    for (let i = 0; i < numStars; i++) {
+    for (let i = 0; i < numStars; i++) { //move the stars a little bit
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -259,6 +272,21 @@
         dx: 0,
         dy: 0,
       });
+    }
+
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.5 + 0.5,
+            baseRadius: 0,
+            dx: 0,
+            dy: 0,
+            vx: (Math.random() - 0.5) * 0.2, // natural horizontal drift
+            vy: (Math.random() - 0.5) * 0.2,  // natural vertical drift
+            opacity: Math.random(), // start with a random brightness
+            twinkleSpeed: Math.random() * 0.02 + 0.005 // how fast it twinkles
+        });
     }
   
     document.addEventListener('mousemove', (e) => {
@@ -285,9 +313,17 @@
           star.dy *= 0.95;
           star.radius += (star.baseRadius - star.radius) * 0.05;
         }
+
+        // Twinkling: pulse opacity
+        star.opacity += star.twinkleSpeed;
+        if (star.opacity >= 1 || star.opacity <= 0.1) {
+            star.twinkleSpeed *= -1; // reverse twinkle direction
+        }
+
   
-        star.x += star.dx;
-        star.y += star.dy;
+      // Add natural drift to the star's position
+        star.x += star.vx + star.dx;
+        star.y += star.vy + star.dy;
   
         if (star.x < 0) star.x = width;
         if (star.x > width) star.x = 0;
@@ -296,7 +332,9 @@
   
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.2, star.radius / 2)})`;
+        // ctx.fillStyle = rgba(255, 255, 255, ${Math.max(0.2, star.radius / 2)});
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.1, Math.min(star.opacity, 1))})`;
+
         ctx.fill();
       }
   
