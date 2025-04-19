@@ -11,6 +11,15 @@ ASSET_MANAGER.queueDownload("./images/fall-white.png");
 ASSET_MANAGER.queueDownload("./images/fall-white-flipped.png");
 ASSET_MANAGER.queueDownload("./images/slide-white.png");
 ASSET_MANAGER.queueDownload("./images/slide-white-flipped.png");
+ASSET_MANAGER.queueDownload("./images/sit-white-flipped.png");
+ASSET_MANAGER.queueDownload("./images/sit-flipped.png");
+ASSET_MANAGER.queueDownload("./images/sit-white.png");
+ASSET_MANAGER.queueDownload("./images/sit.png");
+ASSET_MANAGER.queueDownload("./images/skid-white.png");
+ASSET_MANAGER.queueDownload("./images/skid.png");
+ASSET_MANAGER.queueDownload("./images/walk.png");
+ASSET_MANAGER.queueDownload("./images/walk-white.png");
+ASSET_MANAGER.queueDownload("./images/walk-white-flipped.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("animation");
