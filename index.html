@@ -16,12 +16,41 @@
     <script type="text/javascript" src="./stickfigure.js"></script> 
     <script type="text/javascript" src="./index.js"></script>
 </head>
-<body>
+<body class ="no-scroll">
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="stars"></div>
+        <div class="splash-content">
+            <h1 class="splash-name">ALAN TO</h1>
+            <div class="rocket-wrapper">
+                <svg class="rocket" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L12 6"></path>
+                    <path d="M12 23c0 0 5-4 5-10V8c0-4-2-6-5-6S7 4 7 8v5C7 19 12 23 12 23z"></path>
+                    <path d="M4.5 16.5L3 18"></path>
+                    <path d="M19.5 16.5L21 18"></path>
+                </svg>
+                <!-- <div class="thruster"></div>
+                <div class="smoke-container" id="smoke-container"></div> -->
+            </div>
+        </div>
+        <div class="splash-icons">
+            <!-- blank is so it would tkae you to a new tab instead of keeping it on this tab! -->
+            <a href="https://www.linkedin.com/in/ato17" target="_blank"> <i class="fa fa-linkedin-square"></i> </a>
+            <a href="https://github.com/atofus" target="_blank"> <i class="fa fa-github-square"></i> </a>
+            <a href="https://x.com/elonmusk" target="_blank"> <i class="fa fa-twitter-square"></i> </a>
+       </div>
+       
+       <div class = "instructions"> 
+            <p class="instructions">Click the rocket to launch</p>
+       </div>
+        
+    </div>
+    
     <canvas id="canvas"></canvas>
     <header>
         <div class="container-nav">
-            <div class="nav-container">
-                <a href="#" class="logo">ALAN TO</a>
+            <div class="nav-container"> 
+                <a href="#" data-value="ALAN TO" class="logo">ALAN TO</a>
                 <div class="nav_menu_options">
                         <!-- in the home, also maybe have a sliing thign that shows at the languages i can do -->
                     <!-- <a href="#">home</a> -->
@@ -38,14 +67,16 @@
             <div class="image-button-container">
                 <img src="" alt="Alan To" class="profile-image"> 
                 <div class="text-content">
-                    <h1 class="intro-heading">Hello! I'm Alan! 👋</h1>
-                    <button type="button" class="profile-button">Click Me! 😎</button>
+                    <h1 class="intro-heading">Hello! I'm Alan! 
+                        <span class = "emoji">👋</span>
+                    </h1>
+                    <button type="button" class="profile-button">Click Me! 💫</button>
                     <!-- <button type="button" class="profile-button">Resume</button> -->
                 </div>
             </div>
             <h1 class="intro-heading">I'm a <span id="typed-text"></span><span class="cursor">|</span></h1>
             <div class="location">
-                <i class="fa fa-map-marker"></i>&nbsp;Seattle, Washington
+                <i class="fa fa-map-marker"></i>&nbsp;Seattle, WA, USA
             </div>
             
             <p class="about-text">
@@ -69,7 +100,15 @@
                 <a href="https://x.com/elonmusk" target="_blank"> <i class="fa fa-twitter-square"></i> </a>
            </div>
         </section>
-        <canvas id = "animation" width = 1100px height="1000px"> </canvas>
+        <!-- <div class = "rocket-gang">  -->
+            <!-- <svg class="rocket-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L12 6"></path>
+                <path d="M12 23c0 0 5-4 5-10V8c0-4-2-6-5-6S7 4 7 8v5C7 19 12 23 12 23z"></path>
+                <path d="M4.5 16.5L3 18"></path>
+                <path d="M19.5 16.5L21 18"></path>
+            </svg> -->
+       <!-- </div> -->
+        <canvas id = "animation" width = 1100px height="1000px"> </canvas> <!-- Canvas where animation happens-->
         <hr> 
         <section class="skills-section">
             <h2 class="skills-heading">Languages, Libraries, and Technologies:</h2>
@@ -237,7 +276,7 @@
                                 Associates of Arts
                             </p>
                             <p class="education-description">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus nisi nam eius minus sint qui, quo culpa enim mollitia ducimus aliquid molestiae amet atque rerum. Et delectus pariatur consectetur voluptates?
+                                Graduated with honors from the STEM program with a focus on computer science and mathematics.
                             </p>
                         </div>
                     </div>
@@ -251,18 +290,22 @@
                             <div class="education-meta">
                                 <span class="graduation-date">September 28, 2022</span>
                                 <span class="grade">GPA: 3.9 (In Progress)</span>
+
                             </div>
                             <p class="education-description">
-                                Bachelor of Science in Computer Science
+                                Bachelor of Science in Computer Science and Minor in Mathematics
+                            </p>
+                            <p class = "education-description"> Honor student who participated in club activies such as Volleyball and VSA. 
+                                Received academic prowess by getting on deans list: Spring 2023, Winter 2024, Autumn 2024.
                             </p>
                         </div>
                     </div>
             </div>
         </section>
 
-
+        <!-- Project Section -->
         <section class = "projects-section"> 
-            <h1 class="project-header">Projects</h1>   
+            <h1 class="project-header">My Projects</h1>   
         </section>
     </main>
 </body>

@@ -1,3 +1,138 @@
+
+/* Splash screen styles */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Overlay it on top of everything */
+  transition: opacity 0.8s ease;
+}
+
+.splash-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+.splash-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 3px;
+  padding-left: 35px; /*Move to the left a little bit */
+  margin: 0;
+  /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
+  /* pointer-events: none; */
+  
+}
+
+.rocket-wrapper {
+  position: relative;
+}
+
+.rocket {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 1s ease;
+  transform-origin: bottom center;
+  position: relative;
+  z-index: 2;
+}
+
+.rocket:hover {
+  transform: translateY(-15px);
+  /* transform: none; */
+}
+
+.rocket.launch {
+  animation: rocketLaunch 1.5s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.instructions {
+  margin-top: 30px;
+  color: #aaa;
+  font-family: 'Inter', sans-serif;
+  opacity: 0.8;
+  /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
+  pointer-events: none; /* let mouse clicks pass through */
+  font-size: 1rem;
+}
+
+/* Stars background for splash screen */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes rocketLaunch {
+  0% {
+      transform: translateY(-15px) scale(1); /* match hover position */
+  }
+  20% {
+      transform: translateY(-45px) scale(1.1);
+  }
+  100% {
+      transform: translateY(-100vh) scale(0.5);
+  }
+} 
+
+@keyframes twinkle { /* For the stars */
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+ .splash-icons {
+  position: flex;
+  z-index: 3; /* Makes sure it's above my name */
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 1.5rem;
+  margin: 1rem auto;
+  /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */ 
+  margin-bottom: -3.9rem;
+  margin-top: -1.5rem;
+}
+
+.splash-icons a {
+  color: white;
+  font-size: 2.1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Optional hover effect */
+ .splash-icons a:hover {
+  color: #ccc; 
+} 
+
+body.no-scroll {
+  overflow: hidden;
+}
+
 /* Base styles */
 body {
   margin: 0;
@@ -51,6 +186,11 @@ body::before {
   padding: 0 20px; /*Right and left padding is 20*/
   margin-top: -60px; /* Move it up a little bit */
   /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
+
+  /* Nothing will appear in main container until we press the rocket */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
 }
 
 /* Container for navbar */
@@ -61,11 +201,38 @@ body::before {
 }
 /* Header/Navigation */
 header {
-  padding: 2rem 0;
-  position: sticky; /* Maybe change this??? */
+  position: sticky;
+  width: 100%;
   top: 0;
+  left: 0;
+  padding: 2rem 0;
+  background: transparent;
   z-index: 1000;
-  background-color: #0c0c0c; /* Important to keep it solid while scrolling */
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+header::before { /* Before we scroll down, there'll be lighting at the top */
+  content: '';
+  position: absolute;
+  top: 0; /* Move it up */
+  left: 50%; /* Put it in the middle */
+  transform: translate(-50%, -50%);
+  width: 150%; /* Want to go across the screen */
+  height: 222px;
+  border-radius: 50%; /* How circular we want it */
+  /* background: radial-gradient(circle, rgba(48, 37, 0, 0.4), transparent 70%); */
+  background: radial-gradient(circle, rgba(50, 49, 45, 0.4), transparent 70%);
+  filter: blur(40px);
+  z-index: -1; /* Light will be behind everything */
+  transition: opacity 0.4s ease;
+}
+
+header.scrolled::before {
+  opacity: 0;
+}
+
+header.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .nav-container {
@@ -157,7 +324,7 @@ header {
   margin-bottom: -20px; /* You can adjust this value */
 }
 
-.profile-button {
+.profile-button { /* Button ripple effect */
   font-size: 1.2rem;
   color: white;
   border: 3px solid #ffffff15;
@@ -169,8 +336,37 @@ header {
   border-radius: 4px;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   /* transition: background 0.3s ease; */
 }
+
+/* Star button */
+/* Shooting stars */
+.shooting-star {
+  position: fixed;
+  z-index: 999;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.button-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 
 .profile-button:hover {
   background-color: #ffffff40;
@@ -182,7 +378,47 @@ header {
   margin: 0.5rem 0;
 }
 
-.cursor {
+/*Animation for waving hand */
+.emoji {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  transition: transform 0.3s ease;
+}
+
+.emoji:hover {
+  animation: waving-hand 2.5s;
+  /* animation: waving-hand 2.5s infinite; */
+}
+
+@keyframes waving-hand {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  } 
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+.cursor { /* Animation for the stars in the background */
   display: inline-block;
   color: #ffffff;
   font-weight: 300;
@@ -256,6 +492,17 @@ a:visited {
 .social-icons a:hover {
   color: #ccc; /* Optional hover effect */
 }
+
+.rocket-image {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  /* border-color:#3498db; */
+  /* font-size: 0.5rem; */
+}
+
+
 
 /* Skills section */
 .skills-section {
@@ -395,7 +642,7 @@ a:visited {
 
 .education-header {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2.2rem;
   margin-top: -2.2rem;
   font-weight: 700;
 }
@@ -408,10 +655,16 @@ a:visited {
 .timeline-track {
   position: absolute;
   top: -26px;
-  left: 50%; /*Put timeline in the middle of canvas */
+  left: 50%; /* Center timeline on canvas */
   width: 2px;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) -5%,       /* transparent at top */
+    rgba(255, 255, 255, 0.2) 20%,    /* fade in */
+    rgba(255, 255, 255, 0.2) 80%,    /* solid in middle */
+    rgba(255, 255, 255, 0) 100%      /* fade out at bottom */
+  );
   transform: translateX(-50%);
 }
 
@@ -482,6 +735,21 @@ a:visited {
   font-size: 1rem;
   line-height: 1.6;
   color: #ddd;
+}
+
+
+
+/* Project Section */
+.projects-section {
+  margin: 4rem 0;
+  position: relative;
+}
+
+.project-header {
+  font-size: 2rem;
+  margin-bottom: 2.2rem;
+  margin-top: -4rem;
+  font-weight: 700;
 }
 
 
