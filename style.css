@@ -13,7 +13,51 @@
   align-items: center;
   z-index: 9999; /* Overlay it on top of everything */
   transition: opacity 0.8s ease;
+  background-image: 
+  radial-gradient(circle at 40% 50%, #610b4b 0%, #a30d8a00 40%),
+  radial-gradient(circle at 65% 60%, #420a50 0%, #580e7500 45%),
+  radial-gradient(circle at 40% 60%, #076066 0%, #17777700 45%);
+  background-blend-mode: screen;
 }
+
+/* .scene{
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  perspective: 10vmin;
+}
+
+.scene div{
+  width: 1.5vmin;
+  height: 1.5vmin;
+  transform: 
+    translateZ(-100vmin)
+    rotateY(90deg)
+    rotateX(var(--rx))
+    translateZ(var(--x))
+    scaleX(1);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  animation:  animate 1.5s infinite ease-in;
+  background: #fff;
+  box-shadow: 0 0 20px rgb(10, 239, 255);
+}
+
+@keyframes animate {
+  0%, 90%{
+      opacity: 1;
+  }
+  100%{
+      opacity: 0;
+      transform: 
+      translateZ(0vmin)
+      rotateY(90deg)
+      rotateX(var(--rx))
+      translateZ(var(--x))
+      scaleX(6);
+  }
+} */
 
 .splash-content {
   display: flex;
@@ -33,7 +77,6 @@
   margin: 0;
   /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
   /* pointer-events: none; */
-  
 }
 
 .rocket-wrapper {
@@ -222,6 +265,8 @@ header::before { /* Before we scroll down, there'll be lighting at the top */
   border-radius: 50%; /* How circular we want it */
   /* background: radial-gradient(circle, rgba(48, 37, 0, 0.4), transparent 70%); */
   background: radial-gradient(circle, rgba(50, 49, 45, 0.4), transparent 70%);
+  /* background: radial-gradient(circle, rgba(162, 78, 196, 0.4), transparent 70%); */
+
   filter: blur(40px);
   z-index: -1; /* Light will be behind everything */
   transition: opacity 0.4s ease;
@@ -233,6 +278,7 @@ header.scrolled::before {
 
 header.scrolled {
   background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);;
 }
 
 .nav-container {
@@ -306,6 +352,7 @@ header.scrolled {
   margin-bottom: 1.5rem;
   margin-top: 3rem;
   border: 3px solid rgba(255, 255, 255, 0.37);
+  object-fit: cover;
 }
 
 
@@ -330,16 +377,43 @@ header.scrolled {
   border: 3px solid #ffffff15;
   margin-top: 30px;
   font-weight: 900;
-
+  margin-right: 10px; /* Adjust as needed */
   background: rgba(206, 198, 198, 0.137);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   position: relative;
   overflow: hidden;
   /* transition: background 0.3s ease; */
+  z-index: 0;
 }
+
+
+.button-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-effect 0.6s linear;
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+  z-index: -1; /* Optional: put it behind text */
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.profile-button:last-child {
+  margin-right: 0;
+}
+
 
 /* Star button */
 /* Shooting stars */
@@ -507,12 +581,15 @@ a:visited {
 /* Skills section */
 .skills-section {
   margin: 3rem 0;
+  /* background-color: #1f1f1f;*/
+  /* border-radius: 50px;  */
+  
 }
 
 .skills-heading {
   font-size: 2rem;
   margin-bottom: 1rem;
-  margin-top: -2rem; /* Move it up a little */
+  margin-top: -1.2rem; /* Move it up a little */
 }
 
 .skills-grid {
@@ -575,11 +652,18 @@ a:visited {
   flex-direction: column;
   align-items: center;
   width: 120px;
-  transition: transform 0.3s ease;
+  padding: 16px; /* Always present, so layout doesn't shift */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  border: 2px solid transparent; /* Invisible until hover */
+  border-radius: 12px;
 }
 
 .language-item:hover {
   transform: translateY(-10px);
+  background: rgba(171, 171, 171, 0.1);
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Light border */
+  transform: scale(1.2);
 }
 
 .language-logo {
@@ -627,61 +711,136 @@ a:visited {
   border-radius: 3px;
 }
 
-/* Education stuff */
-.education-header {
+/* Experience/education stuff */
+.experience-section {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.experience-header {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-
-/* Education Timeline Styles */
-.education-section {
-  margin: 4rem 0;
-  position: relative;
+.tabs {
+  display: flex;
+  background-color: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
 }
-
-.education-header {
-  font-size: 2rem;
-  margin-bottom: 2.2rem;
-  margin-top: -2.2rem;
-  font-weight: 700;
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem;
+  cursor: pointer;
+  background: #1c1c1c;
+  transition: background 0.2s;
 }
-
-.education-timeline {
+.tab.active {
+  background: #fff;
+  color: #000;
+}
+.content {
+  display: none;
+}
+.content.active {
+  display: block;
+}
+.timeline {
+  /* border-left: 2px solid #fff; */
+  padding-left: 1.5rem;
   position: relative;
-  padding: 2rem 0;
+  max-width: 90%;
+  margin: auto; /* When it's not full max width and we want to center it */
 }
 
 .timeline-track {
   position: absolute;
-  top: -26px;
-  left: 50%; /* Center timeline on canvas */
+  top: -20px;
   width: 2px;
-  height: 100%;
+  left: -10px;
+  /* height: 100%; */
+  bottom: -34px;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0) -5%,       /* transparent at top */
+    rgba(255, 255, 255, 0) -25%,       /* transparent at top */
     rgba(255, 255, 255, 0.2) 20%,    /* fade in */
-    rgba(255, 255, 255, 0.2) 80%,    /* solid in middle */
-    rgba(255, 255, 255, 0) 100%      /* fade out at bottom */
+    rgba(255, 255, 255, 0.2) 80%,   /* solid in middle */
+    rgba(255, 255, 255, 0) 120%      /* fade out at bottom */
   );
-  transform: translateX(-50%);
+  /* background: #6e6e6e; */
+  /* transform: translateX(-50%); */
 }
 
-.education-item {
-  display: flex;
-  margin-bottom: 4rem;
-  position: relative;
-  margin-top: -30px;
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.6);
+  animation: moveDown 4s linear infinite;
 }
+
+@keyframes moveDown {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.timeline-item {
+  margin-bottom: 2rem;
+  padding-left: 15px;
+  position: relative;
+}
+
+.timeline-box {
+  max-width: 100%;
+  padding: 20px;
+  padding-bottom: 2px;
+  border-color: #fff;
+  /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
+  border: 2px solid #f9f9f9b3;
+  border-radius: 10px;;
+  /* background-color: #1c1c1c; */
+}
+/* .timeline-item::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: -48px;
+  top: 0;
+} */
+
+
 
 .education-icon {
   position: absolute;
-  left: 50%;
+  left: -34px;
+  /* left: 50%; */
   transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: #568bc4;
+  width: 64px;
+  height: 64px;
+  background-color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -691,50 +850,222 @@ a:visited {
   box-shadow: 0 0 10px rgba(193, 214, 236, 0.5);
 }
 
-.education-content {
-  width: 45%;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(220, 225, 231, 0.5);
-  /* margin-top: -50px; */
+.education-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
 }
 
-/* Position alternating items on left/right of timeline */
-.education-item:nth-child(odd) .education-content { /* Move to the left or right */
-  margin-left: auto;
-  margin-right: -20px;
-}
-
-.education-item:nth-child(even) .education-content {
-  margin-right: auto;
-  margin-left: -20px;
-}
-
-.education-content h2 { /* School name */
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #fff;
-}
-
-.education-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+.job-date {
+  color: #bbb;
   font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.job-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.job-role {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.education-role {
+  font-size: 1rem;
+  color: #ccc;
+  /* margin-bottom: 0.5rem; */
+}
+
+.job-desc {
+  font-size: 1.2rem;
   color: #aaa;
 }
 
-.grade {
+.gpa {
   font-weight: bold;
-  color: #3498db;
+  /* color: #3498db; */
+  margin-bottom: 0.4rem;
 }
 
-.education-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #ddd;
+.gpa-word {
+  text-decoration: underline;
+}
+
+.error-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-item .error-text {
+  position: relative;
+  font-weight: 700;
+  font-size: 30px;
+  transform: scale(1.3);
+  padding: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.error-item .error-text::before,
+.error-item .error-text::after {
+  padding: 30px;
+  /* color: white; */
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background: black; */
+  overflow: hidden;
+  top: 0;
+}
+
+.error-item .error-text:before {
+  left: 3px;
+  text-shadow: -4px 0 rgb(141, 141, 141);
+  animation: glitch-1 2s infinite reverse;  
+}
+
+
+.error-item .error-text:after {
+  left: -3px;
+  text-shadow: -3px 0 blue;
+  animation: glitch-2 2s linear infinite reverse;   
+}
+
+@keyframes glitch-1 {
+  0% {
+    clip: rect(132px, auto, 101px, 30px);
+  }
+  5% {
+    clip: rect(17px, auto, 94px, 30px);
+  }
+  10% {
+    clip: rect(40px, auto, 66px, 30px);
+  }
+  15% {
+    clip: rect(87px, auto, 82px, 30px);
+  }
+  20% {
+    clip: rect(137px, auto, 61px, 30px);
+  }
+  25% {
+    clip: rect(34px, auto, 14px, 30px);
+  }
+  30% {
+    clip: rect(133px, auto, 74px, 30px);
+  }
+  35% {
+    clip: rect(76px, auto, 107px, 30px);
+  }
+  40% {
+    clip: rect(59px, auto, 130px, 30px);
+  }
+  45% {
+    clip: rect(29px, auto, 84px, 30px);
+  }
+  50% {
+    clip: rect(22px, auto, 67px, 30px);
+  }
+  55% {
+    clip: rect(67px, auto, 62px, 30px);
+  }
+  60% {
+    clip: rect(10px, auto, 105px, 30px);
+  }
+  65% {
+    clip: rect(78px, auto, 115px, 30px);
+  }
+  70% {
+    clip: rect(105px, auto, 13px, 30px);
+  }
+  75% {
+    clip: rect(15px, auto, 75px, 30px);
+  }
+  80% {
+    clip: rect(66px, auto, 39px, 30px);
+  }
+  85% {
+    clip: rect(133px, auto, 73px, 30px);
+  }
+  90% {
+    clip: rect(36px, auto, 128px, 30px);
+  }
+  95% {
+    clip: rect(68px, auto, 103px, 30px);
+  }
+  100% {
+    clip: rect(14px, auto, 100px, 30px);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    clip: rect(129px, auto, 36px, 30px);
+  }
+  5% {
+    clip: rect(36px, auto, 4px, 30px);
+  }
+  10% {
+    clip: rect(85px, auto, 66px, 30px);
+  }
+  15% {
+    clip: rect(91px, auto, 91px, 30px);
+  }
+  20% {
+    clip: rect(148px, auto, 138px, 30px);
+  }
+  25% {
+    clip: rect(38px, auto, 122px, 30px);
+  }
+  30% {
+    clip: rect(69px, auto, 54px, 30px);
+  }
+  35% {
+    clip: rect(98px, auto, 71px, 30px);
+  }
+  40% {
+    clip: rect(146px, auto, 34px, 30px);
+  }
+  45% {
+    clip: rect(134px, auto, 43px, 30px);
+  }
+  50% {
+    clip: rect(102px, auto, 80px, 30px);
+  }
+  55% {
+    clip: rect(119px, auto, 44px, 30px);
+  }
+  60% {
+    clip: rect(106px, auto, 99px, 30px);
+  }
+  65% {
+    clip: rect(141px, auto, 74px, 30px);
+  }
+  70% {
+    clip: rect(20px, auto, 78px, 30px);
+  }
+  75% {
+    clip: rect(133px, auto, 79px, 30px);
+  }
+  80% {
+    clip: rect(78px, auto, 52px, 30px);
+  }
+  85% {
+    clip: rect(35px, auto, 39px, 30px);
+  }
+  90% {
+    clip: rect(67px, auto, 70px, 30px);
+  }
+  95% {
+    clip: rect(71px, auto, 103px, 30px);
+  }
+  100% {
+    clip: rect(83px, auto, 40px, 30px);
+  }
 }
 
 
@@ -748,9 +1079,406 @@ a:visited {
 .project-header {
   font-size: 2rem;
   margin-bottom: 2.2rem;
-  margin-top: -4rem;
+  margin-top: -2rem;
   font-weight: 700;
 }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+  row-gap: 3rem; /* Vertical gap - increase this value */
+}
+
+.project-card {
+  /* background-color: #1f1f1f; */
+  background-color: black;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 100%;
+  border: 2px solid #f9f9f9b3;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 2px 25px rgba(119, 119, 119, 0.868);
+}
+
+/* .project-image {
+  width: 100%;
+  height: 200px; */
+  /* overflow: hidden; */
+  /* margin-bottom: 2.5rem; */
+/* } */
+
+/* .project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+} */
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* This makes the content take up remaining space */
+}
+
+.project-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: -0.3rem;
+}
+
+/* Read more options */
+.project-description {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.5;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: -0.8rem;/* This pushes the links to the bottom */
+  margin-top: 0.8rem;
+}
+
+.tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  transition: background-color 0.2s ease;
+}
+
+.tag:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* This ensures the links stay at the bottom */
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.project-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Carasel */
+/* Carousel styles */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px; /* Add this line to create rounded corners */
+}
+
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease;
+  height: 100%;
+  /* margin-bottom: 100px; */
+}
+
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.5s ease;
+  border-radius: 8px; /* Also apply to the images themselves */
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; /* Also apply to the images themselves */
+  margin-bottom: 25px;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.carousel:hover .carousel-button { /*When hovering over the images, show buttons */
+  opacity: 1;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+
+
+/* Add these styles to your carousel CSS */
+/* I don't think this works honestly */
+.carousel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; 
+  margin-bottom: 31px; 
+}
+
+/* Optional: You might want to style the video controls */
+video::-webkit-media-controls {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.view-more-projects {
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem; /* Move out the the project grid */
+  left: 40px;
+  /* border: 2px solid rgba(255, 255, 255, 0.2); */
+
+}
+
+.view-projects-link { /* The <a> link */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem; 
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease; 
+  /* margin-left: -50px; */
+}
+
+.view-projects-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.arrow {
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.view-projects-link:hover .arrow {
+  transform: translateX(5px);
+}
+
+
+/* Contact Section */
+.contact-section {
+  padding: 50px 20px;
+  text-align: center;
+  /* background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) -25%,     
+    rgba(255, 255, 255, 0.2) 20%,    
+    rgba(255, 255, 255, 0.2) 80%,   
+    rgba(255, 255, 255, 0) 120%     
+  ); */
+  background: rgb(20, 20, 20);
+  /* background: linear-gradient(to bottom, rgba(10, 10, 35, 0), rgba(10, 10, 35, 1)); */
+  color: white;
+}
+
+.contact-header {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.contact-subtext {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #ccc;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #fffafa;
+  border: 1px solid wheat;
+  border-radius: 8px;
+  color: black; /*color of typed words */
+  font-size: 1rem;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Button to go back to top of page */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 64px;
+  right: 40px;
+  z-index: 100;
+  font-size: 24px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#scrollToTopBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#scrollToTopBtn:hover {
+  background-color: #555;
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  background-color: #171819;
+  color: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 7rem;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  border-top: 1px solid #222;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;  
+  font-size: 1.3rem;
+}
+
+.footer-center {
+  flex-grow: 1;
+  justify-content: center;
+  display: flex;
+}
+
+.footer-right a {
+  color: #ccc;
+  font-size: 1.9rem;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footer-right a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
 
 
 

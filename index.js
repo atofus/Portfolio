@@ -125,15 +125,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	  
 	  // Ripple effect on the button itself
 	  const ripple = document.createElement('span');
-	  ripple.className = 'button-ripple';
-	  this.appendChild(ripple);
+      ripple.className = 'button-ripple';
+
+	//   this.appendChild(ripple);
 	  
 	  // Position the ripple at click point relative to button
-	  const rect = this.getBoundingClientRect();
-	  const x = e.clientX - rect.left;
-	  const y = e.clientY - rect.top;
+	  const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
 	  ripple.style.left = `${x}px`;
-	  ripple.style.top = `${y}px`;
+      ripple.style.top = `${y}px`;
+	  
+	  e.currentTarget.appendChild(ripple);
 	  
 	  // Remove ripple after animation completes
 	  setTimeout(() => {
@@ -183,21 +187,23 @@ window.addEventListener("scroll", () => {
 document.addEventListener('DOMContentLoaded', function() {
 	// Create stars for background
 	const starsContainer = document.querySelector('.stars');
-	const numStars = 100;
+	if (starsContainer != null) {
+		const numStars = 100;
 	
-	for (let i = 0; i < numStars; i++) {
-		const star = document.createElement('div');
-		star.classList.add('star');
-		
-		// Random star properties
-		const size = Math.random() * 3 + 1;
-		star.style.width = `${size}px`;
-		star.style.height = `${size}px`;
-		star.style.left = `${Math.random() * 100}%`;
-		star.style.top = `${Math.random() * 100}%`;
-		star.style.animationDelay = `${Math.random() * 3}s`;
-		
-		starsContainer.appendChild(star);
+		for (let i = 0; i < numStars; i++) {
+			const star = document.createElement('div');
+			star.classList.add('star');
+			
+			// Random star properties
+			const size = Math.random() * 3 + 1;
+			star.style.width = `${size}px`;
+			star.style.height = `${size}px`;
+			star.style.left = `${Math.random() * 100}%`;
+			star.style.top = `${Math.random() * 100}%`;
+			star.style.animationDelay = `${Math.random() * 3}s`;
+			
+			starsContainer.appendChild(star);
+		}
 	}
 
 	
@@ -218,9 +224,138 @@ document.addEventListener('DOMContentLoaded', function() {
 			mainContent.style.opacity = '1';
 			mainContent.style.pointerEvents = 'auto';
 			startMainAnimation();
-		}, 850);
-			
+		}, 1000);
+
 	});
+});
+
+//CAROUSEL for project images
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all carousels on the page
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach(initCarousel);
+});
+
+function initCarousel(carousel) {
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.dot');
+    const prevButton = carousel.querySelector('.carousel-button.prev');
+    const nextButton = carousel.querySelector('.carousel-button.next');
+    
+    let currentIndex = 0;
+    
+    // Set up event listeners
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            navigate(currentIndex - 1);
+        });
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            navigate(currentIndex + 1);
+        });
+    }
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.dataset.index);
+            navigate(index);
+        });
+    });
+    
+    // Auto-advance the carousel every 5 seconds
+    let interval = setInterval(() => {
+        navigate(currentIndex + 1);
+    }, 5000);
+    
+    // Pause auto-advance when hovering over the carousel
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        interval = setInterval(() => {
+            navigate(currentIndex + 1);
+        }, 5000);
+    });
+    
+    function navigate(index) {
+        // Handle wrapping around
+        if (index < 0) {
+            index = slides.length - 1;
+        } else if (index >= slides.length) {
+            index = 0;
+        }
+        
+        // Remove active class from current slide and dot
+        slides[currentIndex].classList.remove('active');
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.remove('active');
+        }
+        
+        // Add active class to new slide and dot
+        currentIndex = index;
+        slides[currentIndex].classList.add('active');
+        if (dots[currentIndex]) {
+            dots[currentIndex].classList.add('active');
+        }
+    }
+}
+
+// const scene = document.querySelector('.scene div');
+// const CreateDiv = () =>{
+//     for (let i = 0; i < 210; i++){
+//         scene.innerHTML += "<div></div>";
+//     }
+// }
+// CreateDiv();
+
+// const stars = document.querySelectorAll('.scene div');
+// stars.forEach( star => {
+//     let x = `${Math.random() * 200}vmax`;
+//     let y = `${Math.random() * 100}vh`;
+//     let z = `${Math.random() * 200 - 100}vmin`;
+//     let rx = `${Math.random() * 360}deg`;
+//     star.style.setProperty('--x', x);
+//     star.style.setProperty('--y', y);
+//     star.style.setProperty('--z', z);
+//     star.style.setProperty('--rx', rx);
+//     let delay = `${Math.random() * 1.5}s`;
+//     star.style.animationDelay = delay;
+// })
+
+
+//Project-Description Read more option:
+// document.querySelectorAll('.read-more-btn').forEach(button => {
+//     button.addEventListener('click', () => {
+//       const description = button.previousElementSibling;
+//       description.classList.toggle('expanded');
+      
+//       if (description.classList.contains('expanded')) {
+//         button.textContent = "Show Less";
+//       } else {
+//         button.textContent = "Read More";
+//       }
+//     });
+//   });
+
+//Go back up to top of page button
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 2500) { //at what point do we want the button to fade in
+	scrollToTopBtn.classList.add("show");
+  } else {
+	scrollToTopBtn.classList.remove("show");
+  }
+});
+
+scrollToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+	top: 0,
+	behavior: "smooth"
+  });
 });
 
 
