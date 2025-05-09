@@ -183,51 +183,52 @@ window.addEventListener("scroll", () => {
 });
 
 
-//Spalsh screen
-document.addEventListener('DOMContentLoaded', function() {
-	// Create stars for background
-	const starsContainer = document.querySelector('.stars');
-	if (starsContainer != null) {
-		const numStars = 100;
+// //Spalsh screen
+// document.addEventListener('DOMContentLoaded', function() {
+// 	// Create stars for background
+// 	const starsContainer = document.querySelector('.stars');
+// 	if (starsContainer != null) {
+// 		const numStars = 100;
 	
-		for (let i = 0; i < numStars; i++) {
-			const star = document.createElement('div');
-			star.classList.add('star');
+// 		for (let i = 0; i < numStars; i++) {
+// 			const star = document.createElement('div');
+// 			star.classList.add('star');
 			
-			// Random star properties
-			const size = Math.random() * 3 + 1;
-			star.style.width = `${size}px`;
-			star.style.height = `${size}px`;
-			star.style.left = `${Math.random() * 100}%`;
-			star.style.top = `${Math.random() * 100}%`;
-			star.style.animationDelay = `${Math.random() * 3}s`;
+// 			// Random star properties
+// 			const size = Math.random() * 3 + 1;
+// 			star.style.width = `${size}px`;
+// 			star.style.height = `${size}px`;
+// 			star.style.left = `${Math.random() * 100}%`;
+// 			star.style.top = `${Math.random() * 100}%`;
+// 			star.style.animationDelay = `${Math.random() * 3}s`;
 			
-			starsContainer.appendChild(star);
-		}
-	}
+// 			starsContainer.appendChild(star);
+// 		}
+// 	}
 
 	
-	// Rocket launch effect
-	const rocket = document.querySelector('.rocket');
-	const splashScreen = document.getElementById('splash-screen');
-	const mainContent = document.querySelector('main.container');
+// // 	// Rocket launch effect
+// 	const rocket = document.querySelector('.rocket');
+// 	const splashScreen = document.getElementById('splash-screen');
+// 	const mainContent = document.querySelector('main.container');
 	
-	rocket.addEventListener('click', function() {
-		// Launch rocket
-		this.classList.add('launch');
+// 	rocket.addEventListener('click', function() {
+// 		// Launch rocket
+// 		this.classList.add('launch');
 
-		// Fade out splash screen and show main content
-		setTimeout(() => {
-			splashScreen.style.opacity = '0';
-			splashScreen.style.pointerEvents = 'none';
-			document.body.classList.remove('no-scroll'); // ✅ Enable scroll again
-			mainContent.style.opacity = '1';
-			mainContent.style.pointerEvents = 'auto';
-			startMainAnimation();
-		}, 1000);
+// 		// Fade out splash screen and show main content
+// 		setTimeout(() => {
+// 			// splashScreen.style.opacity = '0';
+// 			// splashScreen.style.pointerEvents = 'none';
+// 			// ✅ Enable scroll again
+// 			document.body.classList.remove('no-scroll'); 
+// 			// mainContent.style.opacity = '1';
+// 			// mainContent.style.pointerEvents = 'auto';
+// 			startMainAnimation();
+// 		}, 1000);
 
-	});
-});
+// 	});
+// // });
 
 //CAROUSEL for project images
 document.addEventListener('DOMContentLoaded', function() {
@@ -357,6 +358,161 @@ scrollToTopBtn.addEventListener("click", () => {
 	behavior: "smooth"
   });
 });
+
+//float profile image
+  // Special animation for the profile image with a float effect
+  const profileImage = document.querySelector('.profile-image');
+  if (profileImage) {
+    profileImage.addEventListener('animationend', function(e) {
+      if (e.animationName === 'fadeInLeft') {
+        this.classList.add('animate-float');
+      }
+    });
+  }
+
+  document.querySelector('a[href="#experience"]').addEventListener('click', function (e) {
+	e.preventDefault();
+	const headerOffset = 125; // Change this to match your header height
+	const element = document.getElementById('experience');
+	const elementPosition = element.getBoundingClientRect().top;
+	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+	window.scrollTo({
+	  top: offsetPosition,
+	  behavior: 'smooth'
+	});
+  });
+  
+  document.querySelector('a[href="#projects"]').addEventListener('click', function (e) {
+	e.preventDefault();
+	const headerOffset = 125; // Change this to match your header height
+	const element = document.getElementById('project');
+	const elementPosition = element.getBoundingClientRect().top;
+	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+	window.scrollTo({
+	  top: offsetPosition,
+	  behavior: 'smooth'
+	});
+  });
+
+  document.querySelector('a[href="#contact"]').addEventListener('click', function (e) {
+	e.preventDefault();
+	const headerOffset = 125; // Change this to match your header height
+	const element = document.getElementById('contact');
+	const elementPosition = element.getBoundingClientRect().top;
+	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+	window.scrollTo({
+	  top: offsetPosition,
+	  behavior: 'smooth'
+	});
+  });
+
+  document.querySelector('a[href="#logo"]').addEventListener('click', function (e) {
+	e.preventDefault();
+  
+	window.scrollTo({
+	  top: 0,
+	  behavior: 'smooth'
+	});
+  });
+
+  // Add this function to your existing index.js file
+function createSmokeEffect() {
+	const smokeContainer = document.getElementById('smoke-container');
+	if (!smokeContainer) return;
+  
+	// Clear any existing smoke particles
+	smokeContainer.innerHTML = '';
+	
+	// Create new smoke particles
+	for (let i = 0; i < 15; i++) {
+	  const smoke = document.createElement('div');
+	  smoke.className = 'smoke-particle';
+	  
+	  // Randomize position and animation delay
+	  const offsetX = Math.random() * 30 - 15; // -15px to 15px
+	  const offsetY = Math.random() * 10;      // 0 to 10px
+	  const delay = Math.random() * 0.5;       // 0 to 0.5s delay
+	  
+	  smoke.style.left = `calc(50% + ${offsetX}px)`;
+	  smoke.style.bottom = `${offsetY}px`;
+	  smoke.style.animationDelay = `${delay}s`;
+	  
+	  smokeContainer.appendChild(smoke);
+	}
+  }
+  
+  // Modify the rocket click event listener in your splash screen code
+//   document.addEventListener('DOMContentLoaded', function() {
+	
+// 	// Rocket launch effect
+// 	const rocket = document.querySelector('.rocket');
+// 	const splashScreen = document.getElementById('splash-screen');
+// 	const mainContent = document.querySelector('main.container');
+	
+// 	if (rocket) {
+// 	  // Add hover effect for rocket
+// 	  rocket.addEventListener('mouseenter', function() {
+// 		createSmokeEffect();
+// 	  });
+	  
+// 	  rocket.addEventListener('click', function() {
+// 		// Launch rocket
+// 		this.classList.add('launch');
+		
+// 		// Create more intense smoke effect
+// 		createSmokeEffect();
+		
+// 		// Repeat smoke effect several times during launch
+// 		const smokeInterval = setInterval(createSmokeEffect, 200);
+		
+// 		// Fade out splash screen and show main content
+// 		setTimeout(() => {
+// 		  splashScreen.style.opacity = '0';
+// 		  splashScreen.style.pointerEvents = 'none';
+// 		  // Enable scroll again
+// 		  document.body.classList.remove('no-scroll');
+// 		  mainContent.style.opacity = '1';
+// 		  mainContent.style.pointerEvents = 'auto';
+// 		  startMainAnimation();
+		  
+// 		  // Stop creating smoke after transition
+// 		  clearInterval(smokeInterval);
+// 		}, 1000);
+// 	  });
+// 	}
+//   });
+  
+  // Add this to your existing scroll event listener to animate elements as they appear
+  window.addEventListener("scroll", function() {
+	const header = document.querySelector("header");
+	if (window.scrollY > 50) {
+	  header.classList.add("scrolled");
+	} else {
+	  header.classList.remove("scrolled");
+	}
+	
+	// This is handled by Intersection Observer in animations.js now
+  });
+  
+  // Add this to initialize animations when the page is fully loaded
+//   window.addEventListener('load', function() {
+// 	// Trigger animation for elements above the fold
+// 	setTimeout(() => {
+// 	  const elementsAboveFold = document.querySelectorAll('.intro-heading, .profile-image');
+// 	  elementsAboveFold.forEach(el => {
+// 		if (el.classList.contains('fade-in') || 
+// 			el.classList.contains('fade-in-left') || 
+// 			el.classList.contains('fade-in-right') ||
+// 			el.classList.contains('fade-in-up') ||
+// 			el.classList.contains('fade-in-down')) {
+// 		  el.classList.add('visible');
+// 		}
+// 	  });
+// 	}, 500); // Small delay to ensure everything is ready
+//   });
 
 
 

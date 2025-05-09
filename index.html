@@ -6,6 +6,7 @@
 
     <!-- Link to our CSS -->
     <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="styleAnim.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title> Alan's Website </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.10.1/devicon.min.css">
@@ -14,6 +15,7 @@
     <script type="text/javascript" src="./util.js"></script>
     <script type="text/javascript" src="./animator.js"></script> 
     <script type="text/javascript" src="./stickfigure.js"></script> 
+    <script type="text/javascript" src="./indexAnim.js"></script>
     
 </head>
 <body class ="no-scroll">
@@ -54,13 +56,13 @@
     <header>
         <div class="container-nav">
             <div class="nav-container"> 
-                <a href="#" data-value="ALAN TO" class="logo">ALAN TO</a>
+                <a href="#logo" data-value="ALAN TO" class="logo">ALAN TO</a>
                 <div class="nav_menu_options">
                         <!-- in the home, also maybe have a sliing thign that shows at the languages i can do -->
                     <!-- <a href="#">home</a> -->
-                    <a href="#">experience</a>
-                    <a href="#">projects</a>
-                    <a href="#">contact</a>
+                    <a href="#experience">experience</a>
+                    <a href="#projects">projects</a>
+                    <a href="#contact">contact</a>
                 </div>
             </div>
         </div>
@@ -69,7 +71,7 @@
     <main class="container">
         <section class="profile">
             <div class="image-button-container">
-                <img src="" alt="Alan To" class="profile-image"> 
+                <img src="./images/gojo.jpg" alt="Alan To" class="profile-image"> 
                 <div class="text-content">
                     <h1 class="intro-heading">Hello! I'm Alan! 
                         <span class = "emoji">👋</span>
@@ -123,11 +125,11 @@
                 <div class="skill-item">Github</div>
                 <div class="skill-item">Linux</div>
                 <div class="skill-item">HTTP</div>
-                <div class="skill-item">Node.js</div>
                 <div class="skill-item">Docker</div>
                 <div class="skill-item">Git</div>
                 <div class="skill-item">Erlang</div>
                 <div class="skill-item">R</div>
+                <div class="skill-item">Assembly</div>
                 <!-- Add more skills as needed -->
             </div>
 
@@ -246,7 +248,7 @@
         <!-- <hr> -->
 
         <!-- Education section -->
-        <section class="experience-section">
+        <section class="experience-section" id ="experience">
             <h2 class ="experience-header">Experience</h2>
   
             <div class="tabs">
@@ -347,7 +349,7 @@
         </section>
 
         <!-- Project Section -->
-        <section class="projects-section"> 
+        <section class="projects-section" id ="project"> 
             <h1 class="project-header">My Projects</h1>
             <div class="projects-grid">
                 <!-- Project Card 1 -->
@@ -355,7 +357,7 @@
                     <div class="project-image carousel">
                         <div class="carousel-container">
                             <div class="carousel-slide active">
-                                <img src="./images/gif/Holawrad_Game_Trailer.gif" alt="Game Trailer" style="height: 91%;">
+                                <img src="./images/gif/Holawrad_Game_Trailer.gif" alt="Game Trailer">
                                 <!-- Your browser does not support the video tag. -->
                             </div>                            
                             <div class="carousel-slide">
@@ -554,7 +556,7 @@
         </section>
     </main>
 
-    <section class="contact-section">
+    <section class="contact-section" id="contact">
         <h1 class="contact-header">Let's Connect!</h1>
         <p class="contact-subtext">I'd love to hear from you. Feel free to reach out!</p>
         
@@ -577,7 +579,7 @@
 
     <footer class="footer">
         <div class="footer-left">Made with 💜</div>
-        <div class="footer-center">2025 ATO™</div>
+        <div class="footer-center">2025 ato™</div>
         <div class="footer-right">
             <a href="https://www.linkedin.com/in/ato17" target="_blank"> <i class="fa fa-linkedin-square"></i> </a>
             <a href="https://github.com/atofus" target="_blank"> <i class="fa fa-github-square"></i> </a>
@@ -586,6 +588,7 @@
       </footer>
 
     <script type="text/javascript" src="./index.js"></script>
+
 </body>
 </html>
 

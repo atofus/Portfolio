@@ -1,0 +1,306 @@
+/* Enhanced Splash Screen Animations */
+
+/* Main splash screen animation */
+#splash-screen {
+  transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+}
+
+.splash-exit {
+  animation: splashExit 1.5s forwards !important;
+}
+
+
+@keyframes splashExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+}
+
+/* Rocket animations */
+.rocket {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+.rocket:hover {
+  transform: scale(1.1);
+}
+
+/* Rocket click animation */
+@keyframes launchRocket {
+  0% {
+    transform: translateY(-80px) scale(1);
+  }
+  20% {
+    transform: translateY(-100px) scale(0.95);
+  }
+  100% {
+    transform: translateY(-80vh) scale(0.4);
+  }
+}
+
+.rocket-launch {
+  animation: launchRocket 1.5s forwards;
+}
+
+/* Star animations during rocket launch */
+@keyframes twinkleIntensify {
+  0% {
+    opacity: var(--base-opacity);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: var(--base-opacity);
+  }
+}
+
+.stars-active .star {
+  animation: twinkleIntensify 0.5s infinite;
+}
+
+/* Name reveal animation */
+@keyframes nameReveal {
+  0% {
+    letter-spacing: 5px;
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    letter-spacing: 10px;
+    opacity: 0.8;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 0;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0);
+  }
+}
+
+.splash-name-reveal {
+  /* box-shadow: 0 2px 25px rgba(119, 119, 119, 0.868); */
+  margin-top: -8.6rem;
+  padding-bottom: -20px;
+  animation: nameReveal 1.5s forwards;
+}
+
+.splash-icon-reveal {
+  margin-top: -4rem;
+}
+
+/* Instructions animation */
+.instructions {
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+/* Pulse animation for buttons and other elements */
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+.animate-shadow-pulse {
+  animation: shadowPulse 2s infinite;
+}
+
+@keyframes shadowPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(218, 217, 219, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(180, 176, 185, 0.8), 0 0 30px rgba(106, 17, 203, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(213, 211, 216, 0.5);
+  }
+}
+
+/* This will ensure the button maintains its original shape */
+.profile-button {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Optional hover effect to complement the shadow pulse */
+.profile-button:hover {
+  /* transform: translateY(-2px); */
+  transform: scale(1.1);
+}
+
+/* Enhanced animations for the main content */
+.animate-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+/* Staggered animation for skills and project items */
+/* .skill-item {
+  opacity: 0;
+  transform: translateY(20px);
+} */
+
+.skill-item.animate-in {
+  animation: fadeInStaggered 0.5s ease-out forwards;
+}
+
+@keyframes fadeInStaggered {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Timeline animation */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.timeline-item.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Float animation for certain elements */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-13px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+
+/* Loading animation for images */
+/* @keyframes imageReveal {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.profile-image, .project-image img {
+  animation: imageReveal 3s ease-out forwards;
+} */
+
+
+/* AFTER ANIMATIONS ARE FINISHED: */
+
+/* Reset any transforms applied by other animations when they complete */
+.animate-fade-in-up.project-card { /* Huge so the project-card won't have the transition animation still on it */
+  animation-fill-mode: initial;
+}
+
+.animate-fade-in-left.language-item {
+  animation-fill-mode: initial;
+}
+
+.animate-fade-in-up.skill-item {
+  animation-fill-mode: initial;
+}

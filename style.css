@@ -73,10 +73,11 @@
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 3px;
-  padding-left: 35px; /*Move to the left a little bit */
+  /*Move to the left a little bit */
+  padding-left: 35px; 
   margin: 0;
   /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 .rocket-wrapper {
@@ -231,8 +232,8 @@ body::before {
   /* box-shadow: 0 2px 10px rgba(122, 119, 119, 0.596); */
 
   /* Nothing will appear in main container until we press the rocket */
-  opacity: 0;
-  pointer-events: none;
+  /* opacity: 0;
+  pointer-events: none; */
   transition: opacity 1s ease;
 }
 
@@ -278,7 +279,7 @@ header.scrolled::before {
 
 header.scrolled {
   background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);;
+  backdrop-filter: blur(8px);
 }
 
 .nav-container {
@@ -343,6 +344,7 @@ header.scrolled {
   flex-direction: column;
   align-items: flex-start;
   margin: 4rem 0;
+  /* opacity: 0; */
 }
 
 .profile-image {
@@ -607,8 +609,8 @@ a:visited {
 }
 
 .skill-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
 }
 
 /* Language icons section*/
@@ -1101,6 +1103,7 @@ a:visited {
   padding: 15px;
   height: 100%;
   border: 2px solid #f9f9f9b3;
+  /* backdrop-filter: blur(8px); */
 }
 
 .project-card:hover {
@@ -1112,7 +1115,7 @@ a:visited {
   width: 100%;
   height: 300px; 
   overflow: hidden; 
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.2rem;
  }
 
 /* .project-image img {
@@ -1501,4 +1504,8 @@ video::-webkit-media-controls {
   .about-text {
     font-size: 1rem;
   }
+
+  /* #animation {
+    opacity: 0;
+  } */
 }
