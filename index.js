@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 
+//GLITCH EFFECT FOR LOGO
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelector(".logo").onmouseover = event => {
@@ -328,18 +329,18 @@ function initCarousel(carousel) {
 
 
 //Project-Description Read more option:
-// document.querySelectorAll('.read-more-btn').forEach(button => {
-//     button.addEventListener('click', () => {
-//       const description = button.previousElementSibling;
-//       description.classList.toggle('expanded');
-      
-//       if (description.classList.contains('expanded')) {
-//         button.textContent = "Show Less";
-//       } else {
-//         button.textContent = "Read More";
-//       }
-//     });
-//   });
+    document.querySelectorAll('.read-more').forEach(button => {
+        button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const shortText = this.previousElementSibling.previousElementSibling;
+        const fullText = this.previousElementSibling;
+        const isExpanded = fullText.style.display === 'inline';
+
+        shortText.style.display = isExpanded ? 'inline' : 'none';
+        fullText.style.display = isExpanded ? 'none' : 'inline';
+        this.textContent = isExpanded ? 'Read more' : 'Read less';
+    });
+});
 
 //Go back up to top of page button
 const scrollToTopBtn = document.getElementById("scrollToTopBtn");

@@ -14,9 +14,10 @@
   z-index: 9999; /* Overlay it on top of everything */
   transition: opacity 0.8s ease;
   background-image: 
-  radial-gradient(circle at 40% 50%, #610b4b 0%, #a30d8a00 40%),
-  radial-gradient(circle at 65% 60%, #420a50 0%, #580e7500 45%),
-  radial-gradient(circle at 40% 60%, #076066 0%, #17777700 45%);
+    radial-gradient(circle at 25% 40%, rgba(23, 9, 27, 0.562) 0%, transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(18, 35, 54, 0.3) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(51, 31, 56, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 60% 25%, rgba(255, 255, 255, 0.15) 0%, transparent 30%);
   background-blend-mode: screen;
 }
 
@@ -530,7 +531,7 @@ header.scrolled {
   font-size: 1.35rem;
   max-width: 1100px; /*Should be the same as the size of box */
   /* margin-bottom: -0.5rem; */
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 a:link,
@@ -742,6 +743,11 @@ a:visited {
 .tab.active {
   background: #fff;
   color: #000;
+}
+
+.tab:not(.active):hover {
+  background: #333;
+  color: #fff;
 }
 .content {
   display: none;
@@ -1148,6 +1154,10 @@ a:visited {
   font-size: 1rem;
   margin-bottom: 0.3rem;
   line-height: 1.5;
+}
+
+.read-more {
+  color: white;
 }
 
 .project-tags {
