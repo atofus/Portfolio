@@ -274,6 +274,7 @@ function setupScrollAnimations() {
     { selector: '.language-item', animation: 'animate-fade-in-left', staggered: true },
     
     // Experience section
+    { selector: '.experience-section', animation: 'animate-fade-in-up' },
     { selector: '.experience-header', animation: 'animate-fade-in-up' },
     { selector: '.tabs', animation: 'animate-fade-in-up' },
     { selector: '.timeline-item', animation: 'animate-fade-in-left', staggered: true },

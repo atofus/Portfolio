@@ -886,7 +886,7 @@ a:visited {
 }
 
 .job-desc {
-  font-size: 1.2rem;
+  font-size: 1.12rem;
   color: #aaa;
 }
 
@@ -1511,11 +1511,17 @@ video::-webkit-media-controls {
     font-size: 2rem;
   }
   
-  .about-text {
+  /* .about-text {
     font-size: 1rem;
-  }
+  } */
 
   /* #animation {
     opacity: 0;
   } */
+}
+
+@media (max-width: 1161px) {
+  #animation {
+    opacity: 0;
+  }
 }
