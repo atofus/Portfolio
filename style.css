@@ -354,7 +354,8 @@ header.scrolled {
   border-radius: 50%;
   margin-bottom: 1.5rem;
   margin-top: 3rem;
-  border: 3px solid rgba(255, 255, 255, 0.37);
+  border: 3px solid rgba(255, 255, 255, 0.322);
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.233);
   object-fit: cover;
 }
 

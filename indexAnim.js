@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   window.scrollTo(0, 0);
 
-  // rest of your animation and init code...
 });
 
 // Splash screen interactions
@@ -46,10 +45,10 @@ function initSplashScreen() {
   const skills = document.querySelector('.skills-section')
   const icons = document.querySelector('.splash-icons');
   
-  // Make sure content is initially hidden
+  //content is initially hidden
   if (mainContent) mainContent.style.opacity = '0';
   if (header) header.style.opacity = '0';
-  // Hide the profile section completely initially
+  // Hide profile section completely initially
   if (profile) {
     profile.style.opacity = '0';
     profile.style.visibility = 'hidden';
