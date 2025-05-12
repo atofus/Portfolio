@@ -1,3 +1,7 @@
+html {
+  zoom: 0.80;
+}
+
 /* Splash screen styles */
 #splash-screen {
   position: fixed;
