@@ -175,6 +175,7 @@ function triggerEntranceAnimations() {
     { selector: '.location', animation: 'animate-fade-in-up', delay: 500 },
     { selector: '.about-text', animation: 'animate-fade-in-up', delay: 600 },
     { selector: '.about-text1', animation: 'animate-fade-in-up', delay: 700 },
+    { selector: '.about-text1', animation: 'animate-fade-in-up', delay: 750 },
     { selector: '.about-text2', animation: 'animate-fade-in-up', delay: 800 },
     { selector: '.social-icons', animation: 'animate-fade-in-up', delay: 900 },
     { selector: '.skills-heading', animation: 'animate-fade-in-up', delay: 1000}
