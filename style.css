@@ -1,5 +1,6 @@
 html {
   zoom: 0.80;
+  overflow-x: hidden;
 }
 
 /* Splash screen styles */
