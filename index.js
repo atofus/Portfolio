@@ -346,7 +346,7 @@ function initCarousel(carousel) {
 const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 2500) { //at what point do we want the button to fade in
+  if (window.scrollY > 2000) { //at what point do we want the button to fade in
 	scrollToTopBtn.classList.add("show");
   } else {
 	scrollToTopBtn.classList.remove("show");
@@ -373,7 +373,7 @@ scrollToTopBtn.addEventListener("click", () => {
 
   document.querySelector('a[href="#experience"]').addEventListener('click', function (e) {
 	e.preventDefault();
-	const headerOffset = 125; // Change this to match your header height
+	const headerOffset = 30; // Change this to match your header height
 	const element = document.getElementById('experience');
 	const elementPosition = element.getBoundingClientRect().top;
 	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -386,7 +386,7 @@ scrollToTopBtn.addEventListener("click", () => {
   
   document.querySelector('a[href="#projects"]').addEventListener('click', function (e) {
 	e.preventDefault();
-	const headerOffset = 125; // Change this to match your header height
+	const headerOffset = 20; // Change this to match your header height
 	const element = document.getElementById('project');
 	const elementPosition = element.getBoundingClientRect().top;
 	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -486,7 +486,7 @@ function createSmokeEffect() {
 // 	}
 //   });
   
-  // Add this to your existing scroll event listener to animate elements as they appear
+  //Scroll event listener to animate elements as they appear
   window.addEventListener("scroll", function() {
 	const header = document.querySelector("header");
 	if (window.scrollY > 50) {

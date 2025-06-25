@@ -180,6 +180,7 @@ html {
 
 body.no-scroll {
   overflow: hidden;
+  height: 100vh; /* Ensure body takes full viewport height */
 }
 
 /* Base styles */
