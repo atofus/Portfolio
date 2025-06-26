@@ -373,7 +373,7 @@ scrollToTopBtn.addEventListener("click", () => {
 
   document.querySelector('a[href="#experience"]').addEventListener('click', function (e) {
 	e.preventDefault();
-	const headerOffset = 30; // Change this to match your header height
+	const headerOffset = 100; // Change this to match your header height
 	const element = document.getElementById('experience');
 	const elementPosition = element.getBoundingClientRect().top;
 	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -386,7 +386,7 @@ scrollToTopBtn.addEventListener("click", () => {
   
   document.querySelector('a[href="#projects"]').addEventListener('click', function (e) {
 	e.preventDefault();
-	const headerOffset = 20; // Change this to match your header height
+	const headerOffset = 90; // Change this to match your header height
 	const element = document.getElementById('project');
 	const elementPosition = element.getBoundingClientRect().top;
 	const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -494,8 +494,6 @@ function createSmokeEffect() {
 	} else {
 	  header.classList.remove("scrolled");
 	}
-	
-	// This is handled by Intersection Observer in animations.js now
   });
   
   // Add this to initialize animations when the page is fully loaded

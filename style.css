@@ -1,6 +1,6 @@
 html {
   zoom: 0.67;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */ /*Messses up w/ header sticky */
 }
 
 /* Splash screen styles */
@@ -270,9 +270,9 @@ header::before { /* Before we scroll down, there'll be lighting at the top */
   width: 150%; /* Want to go across the screen */
   height: 222px;
   border-radius: 50%; /* How circular we want it */
-  /* background: radial-gradient(circle, rgba(48, 37, 0, 0.4), transparent 70%); */
-  background: radial-gradient(circle, rgba(100, 99, 94, 0.4), transparent 70%);
-  /* background: radial-gradient(circle, rgba(162, 78, 196, 0.4), transparent 70%); */
+  /* background: radial-gradient(circle, rgba(48, 37, 0, 0.4), transparent 70%); */ /*Diff color in header */
+  background: radial-gradient(circle, rgba(100, 99, 94, 0.4), transparent 70%); /*Diff color in header */
+  /* background: radial-gradient(circle, rgba(162, 78, 196, 0.4), transparent 70%); */ /*Diff color in header */
 
   filter: blur(40px);
   z-index: -1; /* Light will be behind everything */
