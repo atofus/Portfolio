@@ -3,6 +3,10 @@ html {
   /* overflow-x: hidden; */ /*Messses up w/ header sticky */
 }
 
+* {
+   scrollbar-width: none;
+}
+
 /* Splash screen styles */
 #splash-screen {
   position: fixed;
