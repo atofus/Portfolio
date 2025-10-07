@@ -1,11 +1,9 @@
 html {
   zoom: 0.67;
   /* overflow-x: hidden; */ /*Messses up w/ header sticky */
+  scrollbar-width: none;
 }
 
-* {
-   scrollbar-width: none;
-}
 
 /* Splash screen styles */
 #splash-screen {
